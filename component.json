@@ -1,0 +1,14 @@
+{
+    "title": "Venzee Mapper",
+    "description": "Venzee Mapper",
+    "actions": {
+        "venzeeToShopify": {
+            "main": "./lib/venzeeToShopify.js",
+            "title": "Venzee to Shopify"
+        },
+        "shopifyToVenzee": {
+            "main": "./lib/shopifyToVenzee.js",
+            "title": "Shopify to Venzee"
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "venzee-mapper",
+  "version": "0.0.1",
+  "description": "Venzee mapper",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "engines": {
+    "node": "5.1.0"
+  },
+  "author": "elastic.io GmbH",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "elasticio-node": "0.0.5",
+    "lodash": "^3.10.1",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1"
+  }
+}
