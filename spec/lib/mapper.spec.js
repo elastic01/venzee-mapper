@@ -2,7 +2,7 @@
 
 describe('mapper functions', function () {
 
-    let mapper = require('../lib/mapper.js');
+    let mapper = require('../../lib/mapper.js');
 
     let data = {
         "title": "Puma",

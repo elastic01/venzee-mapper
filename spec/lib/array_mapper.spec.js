@@ -2,7 +2,7 @@
 
 describe('arrays in mapping', function () {
 
-    let array_mapper = require('../lib/array_mapper.js');
+    let array_mapper = require('../../lib/array_mapper.js');
     var _ = require('lodash');
 
     let mapping = {

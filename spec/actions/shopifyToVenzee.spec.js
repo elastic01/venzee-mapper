@@ -2,7 +2,7 @@
 
 describe('shopifyToVenzee', function () {
 
-    let shopifyToVenzee = require('../lib/shopifyToVenzee.js');
+    let shopifyToVenzee = require('../../actions/shopifyToVenzee.js');
     let EventEmitter = require('events').EventEmitter;
 
     let shopifyRecord = {

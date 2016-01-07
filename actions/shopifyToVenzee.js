@@ -1,9 +1,9 @@
 'use strict';
 
 var _ = require('lodash');
+var mapper = require('./../lib/mapper.js');
 var elasticio = require('elasticio-node');
 var messages = elasticio.messages;
-var mapper = require('./mapper.js');
 var debug = require('debug')('venzee-mapper');
 
 exports.process = processMessage;
@@ -11,15 +11,16 @@ exports.process = processMessage;
 function processMessage(msg, cfg) {
 
     var self = this;
-    var records = msg.body.records || [msg.body];
+    var product = msg.body;
     let mapping = cfg.mapper;
 
     debug('Mapping: %j', mapping);
     debug('Arrived: %j', msg.body);
 
-    _.forEach(records, function(record){
-        // emit each venzee record
-        let result = mapper.map(record, mapping);
+    // emit 1 record for each variant
+    _.forEach(product.variants, function(variant) {
+        let data = _.extend(_.cloneDeep(product), {variant: variant});
+        let result = mapper.map(data, mapping);
         emitData(result);
     });
 
