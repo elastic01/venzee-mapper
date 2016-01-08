@@ -2,6 +2,10 @@
     "title": "Venzee Mapper",
     "description": "Venzee Mapper",
     "actions": {
+        "map": {
+            "main": "./actions/map.js",
+            "title": "Map"
+        },
         "venzeeToShopify": {
             "main": "./actions/venzeeToShopify.js",
             "title": "Venzee to Shopify"
