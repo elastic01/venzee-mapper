@@ -1,8 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var elasticio = require('elasticio-node');
-var messages = elasticio.messages;
+var messages = require('elasticio-node').messages;
 var mapper = require('./../lib/mapper.js');
 var debug = require('debug')('venzee-mapper');
 

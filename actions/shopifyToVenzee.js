@@ -2,8 +2,7 @@
 
 var _ = require('lodash');
 var mapper = require('./../lib/mapper.js');
-var elasticio = require('elasticio-node');
-var messages = elasticio.messages;
+var messages = require('elasticio-node').messages;
 var debug = require('debug')('venzee-mapper');
 
 exports.process = processMessage;
