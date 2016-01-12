@@ -47,7 +47,7 @@ describe('shopifyToVenzee', function () {
     };
 
     let mapping = {
-        "productMapping": {
+        "product": {
             "recordId": "{{id}}",
             "handle": "{{handle}}",
             "description": "{{body_html}}",
@@ -61,7 +61,7 @@ describe('shopifyToVenzee', function () {
             "vendor": "{{vendor}}",
             "image_url": "{{image_src}}"
         },
-        "variantMapping": {
+        "variant": {
             "recordId": "{{id}}",
             "parentId": "{{product.id}}",
             "handle": "{{product.handle}}",

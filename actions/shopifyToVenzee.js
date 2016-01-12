@@ -11,8 +11,8 @@ function processMessage(msg, cfg) {
 
     var self = this;
     var product = msg.body;
-    var productMapping = cfg.mapper.productMapping;
-    var variantMapping = cfg.mapper.variantMapping;
+    var productMapping = cfg.mapper.product;
+    var variantMapping = cfg.mapper.variant;
 
     debug('Product mapping: %j', productMapping);
     debug('Variant mapping: %j', variantMapping);
