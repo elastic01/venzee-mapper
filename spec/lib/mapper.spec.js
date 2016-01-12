@@ -27,6 +27,7 @@ describe('mapper functions', function () {
             "subtitle": "Some static value",
             "subtitle1": "Some static value with {{title}} and {{description}} and {{sizes}}",
             "some_property": "{{lorem ipsum dolor sit amet}}",
+            "lorem ipsum value": "{{lorem ipsum dolor sit amet}}",
             "body_html": "{{description}}",
             "sizes": "{{sizes}}",
             "option_names": {
@@ -59,6 +60,7 @@ describe('mapper functions', function () {
             "subtitle": "Some static value",
             subtitle1: 'Some static value with Puma and Description 1 and S,M,L',
             some_property: 'lorem ipsum',
+            "lorem ipsum value": 'lorem ipsum',
             "body_html": "Description 1",
             "sizes": ["S", "M", "L"],
             option_names: {
