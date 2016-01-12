@@ -20,6 +20,7 @@ function processMessage(msg, cfg) {
 
     // emit 1 record per product
     if (productMapping) {
+        product.id = product.id.toString();
         let productRecord = mapper.map(product, productMapping);
         emitData(productRecord);
     }
@@ -28,6 +29,7 @@ function processMessage(msg, cfg) {
     if (variantMapping) {
         _.forEach(product.variants, function(variant) {
             let variantData = _.cloneDeep(variant);
+            variantData.id = variantData.id.toString();
             variantData.product = product;
             let variantRecord = mapper.map(variantData, variantMapping);
             emitData(variantRecord);

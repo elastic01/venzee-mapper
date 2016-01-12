@@ -6,7 +6,7 @@ describe('shopifyToVenzee', function () {
     let EventEmitter = require('events').EventEmitter;
 
     let shopifyRecord = {
-        "id": 111,
+        "id": '111',
         "title": "Sport Shoes",
         "body_html": "Description 1",
         "tags": "Sport, Fitness",
@@ -23,7 +23,7 @@ describe('shopifyToVenzee', function () {
         },
         "variants": [
             {
-                "id": 222,
+                "id": '222',
                 "sku": "PROD1-VAR1",
                 "option1": "Red",
                 "option2": "S",
@@ -31,7 +31,7 @@ describe('shopifyToVenzee', function () {
                 "image_src": "http://pumaecom.scene7.com/image2.jpg"
             },
             {
-                "id": 333,
+                "id": '333',
                 "sku": "PROD1-VAR2",
                 "option1": "Red",
                 "option2": "M",
