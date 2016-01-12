@@ -11,17 +11,28 @@ function processMessage(msg, cfg) {
 
     var self = this;
     var product = msg.body;
-    let mapping = cfg.mapper;
+    var productMapping = cfg.mapper.productMapping;
+    var variantMapping = cfg.mapper.variantMapping;
 
-    debug('Mapping: %j', mapping);
+    debug('Product mapping: %j', productMapping);
+    debug('Variant mapping: %j', variantMapping);
     debug('Arrived: %j', msg.body);
 
-    // emit 1 record for each variant
-    _.forEach(product.variants, function(variant) {
-        let data = _.extend(_.cloneDeep(product), {variant: variant});
-        let result = mapper.map(data, mapping);
-        emitData(result);
-    });
+    // emit 1 record per product
+    if (productMapping) {
+        let productRecord = mapper.map(product, productMapping);
+        emitData(productRecord);
+    }
+
+    // emit 1 record per each variant
+    if (variantMapping) {
+        _.forEach(product.variants, function(variant) {
+            let variantData = _.cloneDeep(variant);
+            variantData.product = product;
+            let variantRecord = mapper.map(variantData, variantMapping);
+            emitData(variantRecord);
+        });
+    }
 
     // emit end
     emitEnd();

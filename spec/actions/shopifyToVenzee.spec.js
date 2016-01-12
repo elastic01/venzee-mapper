@@ -6,6 +6,7 @@ describe('shopifyToVenzee', function () {
     let EventEmitter = require('events').EventEmitter;
 
     let shopifyRecord = {
+        "id": 111,
         "title": "Sport Shoes",
         "body_html": "Description 1",
         "tags": "Sport, Fitness",
@@ -22,6 +23,7 @@ describe('shopifyToVenzee', function () {
         },
         "variants": [
             {
+                "id": 222,
                 "sku": "PROD1-VAR1",
                 "option1": "Red",
                 "option2": "S",
@@ -29,6 +31,7 @@ describe('shopifyToVenzee', function () {
                 "image_src": "http://pumaecom.scene7.com/image2.jpg"
             },
             {
+                "id": 333,
                 "sku": "PROD1-VAR2",
                 "option1": "Red",
                 "option2": "M",
@@ -44,26 +47,43 @@ describe('shopifyToVenzee', function () {
     };
 
     let mapping = {
-        "id": "{{id}}",
-        "handle": "{{handle}}",
-        "description": "{{body_html}}",
-        "option1_name": "{{option_names.option1}}",
-        "option2_name": "{{option_names.option2}}",
-        "seo_description": "{{metafield_values.description_tag}}",
-        "seo_title": "{{metafield_values.title_tag}}",
-        "tags": "{{tags}}",
-        "title": "{{title}}",
-        "type": "{{product_type}}",
-        "vendor": "{{vendor}}",
-        "image_url": "{{image_src}}",
-        "option1": "{{variant.option1}}",
-        "option2": "{{variant.option2}}",
-        "variant_image_url": "{{variant.image_src}}",
-        "sku": "{{variant.sku}}",
-        "price": "{{variant.price}}",
-        "images": [{
-            "url": "{{variant.image_src}}"
-        }]
+        "productMapping": {
+            "recordId": "{{id}}",
+            "handle": "{{handle}}",
+            "description": "{{body_html}}",
+            "option1_name": "{{option_names.option1}}",
+            "option2_name": "{{option_names.option2}}",
+            "seo_description": "{{metafield_values.description_tag}}",
+            "seo_title": "{{metafield_values.title_tag}}",
+            "tags": "{{tags}}",
+            "title": "{{title}}",
+            "type": "{{product_type}}",
+            "vendor": "{{vendor}}",
+            "image_url": "{{image_src}}"
+        },
+        "variantMapping": {
+            "recordId": "{{id}}",
+            "parentId": "{{product.id}}",
+            "handle": "{{product.handle}}",
+            "description": "{{product.body_html}}",
+            "option1_name": "{{product.option_names.option1}}",
+            "option2_name": "{{product.option_names.option2}}",
+            "seo_description": "{{product.metafield_values.description_tag}}",
+            "seo_title": "{{product.metafield_values.title_tag}}",
+            "tags": "{{product.tags}}",
+            "title": "{{product.title}}",
+            "type": "{{product.product_type}}",
+            "vendor": "{{product.vendor}}",
+            "image_url": "{{product.image_src}}",
+            "option1": "{{option1}}",
+            "option2": "{{option2}}",
+            "variant_image_url": "{{image_src}}",
+            "sku": "{{sku}}",
+            "price": "{{price}}",
+            "images": [{
+                "url": "{{image_src}}"
+            }]
+        }
     };
 
     it('should emit two records', function (done) {
@@ -82,6 +102,25 @@ describe('shopifyToVenzee', function () {
             let args = emitter.emit.calls.argsFor(0);
             expect(args[0]).toEqual('data');
             expect(args[1].body).toEqual({
+                "recordId": 111,
+                "handle": "product-1",
+                "description": "Description 1",
+                "option1_name": "Color",
+                "option2_name": "Size",
+                "seo_description": "Shoes SEO Description",
+                "seo_title": "Shoes Seo Title",
+                "tags": "Sport, Fitness",
+                "title": "Sport Shoes",
+                "type": "Shoes",
+                "vendor": "Puma",
+                "image_url": "http://pumaecom.scene7.com/image1.jpg"
+            });
+
+            args = emitter.emit.calls.argsFor(1);
+            expect(args[0]).toEqual('data');
+            expect(args[1].body).toEqual({
+                "recordId": 222,
+                "parentId": 111,
                 "handle": "product-1",
                 "description": "Description 1",
                 "option1_name": "Color",
@@ -103,9 +142,11 @@ describe('shopifyToVenzee', function () {
                 ]
             });
 
-            args = emitter.emit.calls.argsFor(1);
+            args = emitter.emit.calls.argsFor(2);
             expect(args[0]).toEqual('data');
             expect(args[1].body).toEqual({
+                "recordId": 333,
+                "parentId": 111,
                 "handle": "product-1",
                 "description": "Description 1",
                 "option1_name": "Color",
@@ -127,7 +168,7 @@ describe('shopifyToVenzee', function () {
                 ]
             });
 
-            args = emitter.emit.calls.argsFor(2);
+            args = emitter.emit.calls.argsFor(3);
             expect(args[0]).toEqual('end');
 
             done();
